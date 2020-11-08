@@ -1,24 +1,53 @@
 package utils;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.AmazonHome;
-
-import java.util.concurrent.TimeUnit;
-
-import static DriverManager.Driver.driver;
 
 public abstract class base {
 
-    private static WebDriver driver;
+    private static WebDriver driver = AmazonHome.driver;
 
-   public base(){
-       PageFactory.initElements(driver, this);
+//   public base(){
+//       PageFactory.initElements(driver, this);
+//    }
+
+    // add nav utils
+    public static class InnerBase{
+        public InnerBase refresh(){ driver.navigate().refresh();
+            return this;
+        }
+
+        public InnerBase returnHome(){
+            //   driver.navigate().back();
+            driver.navigate().to("https://www.amazon.com/");
+            return this;
+        }
+
+        public InnerBase scrollDown(){
+            Actions builder = new Actions(driver);
+            builder.sendKeys(Keys.PAGE_DOWN).build().perform();
+            builder.sendKeys(Keys.PAGE_DOWN).build().perform();
+            return this;
+        }
+
+        public InnerBase scrollDownTo(WebElement element){
+            Actions builder = new Actions(driver);
+            builder.sendKeys(Keys.PAGE_DOWN)
+                    .moveToElement(element).build().perform();
+            return this;
+        }
+        public InnerBase scrollUp(){
+            Actions builder = new Actions(driver);
+            builder.sendKeys(Keys.PAGE_UP)
+                    .moveToElement(AmazonHome.dashboard)
+                    .build().perform();
+            return this;
+        }
+
     }
 
 
-
-    // add nav utils
 }

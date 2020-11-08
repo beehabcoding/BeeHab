@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.AmazonHome;
+import utils.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +98,21 @@ public class BestSellersTest {
     }
 
 
+    @Test
+    public void navBarTest4() {
+        AmazonHome anObj = new AmazonHome(driver);
+        base.InnerBase b = new base.InnerBase();
+        driver.get("https://www.amazon.com/");
+
+     // base.scrollDownTo(AmazonHome.blog);
+
+       b.scrollDownTo(AmazonHome.blog)
+                     .scrollUp()
+                     .refresh()
+                     .scrollDown()
+                     .scrollDownTo(AmazonHome.blog)
+                     .scrollUp();
+    }
  
 
 }

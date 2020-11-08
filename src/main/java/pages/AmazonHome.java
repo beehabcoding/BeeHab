@@ -31,4 +31,12 @@ public class AmazonHome {
 
     @FindBy(xpath = "//a[contains(text(),'Best Sellers')]")
     public static WebElement bestSellers;
+
+
+    @FindBy(xpath = "//a[contains(text(),'Blog')]")
+    public static WebElement blog;
+
+
+    @FindBy(css = "#nav-logo-sprites")
+    public static WebElement dashboard;
 }
